@@ -1,0 +1,39 @@
+<div
+  class="flex flex-col gap-4 bg-gray-100 p-4 rounded shadow-md bais-1/4"
+  [class.grayscale]="isDiscounted"
+>
+  <img
+    [src]="imagePath"
+    alt="{{ title }}"
+    class="size-48 object-cover mb-2 rounded"
+  />
+
+  <div class="flex justify-between h-12">
+    <h3 class="text-lg font-bold">{{ title }}</h3>
+    <p *ngIf="!isDiscounted">{{ price | currency }}</p>
+
+    <div *ngIf="isDiscounted" class="flex flex-col gap-2">
+      <p class="text-green-500">
+        {{ discountedPrice | currency }}
+      </p>
+      <p class="text-red-500 line-through">
+        {{ price | currency }}
+      </p>
+    </div>
+  </div>
+
+  <div class="flex justify-between">
+    <button
+      (click)="onEdit()"
+      class="bg-blue-800 text-white font-medium text-sm p-2 rounded-lg mt-2"
+    >
+      Apply Discount
+    </button>
+    <button
+      (click)="onDelete()"
+      class="bg-red-800 text-white font-medium text-sm p-2 rounded-lg mt-2"
+    >
+      Delete
+    </button>
+  </div>
+</div>
